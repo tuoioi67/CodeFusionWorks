@@ -1,10 +1,17 @@
-const pullAtValue = (arr, pullArr) => {
-  let removed = [],
-    pushToRemove = arr.forEach((v, i) =>
-      pullArr.includes(v) ? removed.push(v) : v,
-    ),
-    mutateTo = arr.filter((v, i) => !pullArr.includes(v));
-  arr.length = 0;
-  mutateTo.forEach((v) => arr.push(v));
-  return removed;
-};
+function combinationSum(candidates, target) {
+  const result = [];
+  backtrack(0, [], 0);
+  return result;
+  function backtrack(start, current, sum) {
+    if (sum === target) {
+      result.push([...current]);
+      return;
+    }
+    if (sum > target || start === candidates.length) return;
+    for (let i = start; i < candidates.length; i++) {
+      current.push(candidates[i]);
+      backtrack(i, current, sum + candidates[i]);
+      current.pop();
+    }
+  }
+}
